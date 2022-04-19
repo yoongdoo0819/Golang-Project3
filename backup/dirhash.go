@@ -12,6 +12,7 @@ func DirHash(path string) (string, error) {
 	hash := md5.New()
 	err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
+			fmt.Println("walk err")
 			return err
 		}
 		io.WriteString(hash, path)

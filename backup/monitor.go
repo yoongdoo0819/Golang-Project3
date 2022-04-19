@@ -15,13 +15,17 @@ type Monitor struct {
 func (m *Monitor) Now() (int, error) {
 	var counter int
 	for path, lastHash := range m.Paths {
+		fmt.Println("path :", path)
 		newHash, err := DirHash(path)
 		if err != nil {
+			fmt.Println("??")
 			return counter, err
 		}
 		if newHash != lastHash {
 			err := m.act(path)
 			if err != nil {
+
+				fmt.Println("???")
 				return counter, err
 			}
 			m.Paths[path] = newHash
